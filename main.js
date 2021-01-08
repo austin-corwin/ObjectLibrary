@@ -23,7 +23,7 @@ let huckleberryFinn = new book('HuckleBerry Finn','Agatha Cristie',272,'have');
 
 function addBookToLibrary(book){
     myLibrary.push(book);
-   
+    myLibrary.forEach(renderBookCard(book));
 };
 
 
@@ -34,9 +34,14 @@ function addBookToLibrary(book){
 // addBookToLibrary(huckleberryFinn);
 
 
-function populateBook(book){
-    myLibrary.forEach(function (book) {
-        let bookName = book.name;
+// function populateBook(book){
+//     myLibrary.forEach(renderBookCard(book));
+
+// }
+
+function renderBookCard(book){
+
+         let bookName = book.name;
         let bookAuthor = book.author;
         let bookPages = book.pages;
         let bookReadStatus = book.read;
@@ -78,17 +83,10 @@ function populateBook(book){
         console.log(bookName);
         console.log(bookAuthor);
         console.log(bookPages);
-    
-    });
-}
+        console.log(bookReadStatus);
+};
 
 
-
-
-
-
-
-console.log(myLibrary);
 
 // The Modal Javascript //
 
@@ -100,6 +98,8 @@ bookModal.addEventListener('shown.bs.modal', function () {
 })
 
 // End Modal Javascript //
+
+
 
 function saveChanges(name,author,pages,read){
     let titleValue = document.querySelector('.title-input').value;
@@ -114,7 +114,7 @@ function saveChanges(name,author,pages,read){
    console.log(pagesValue);
    console.log(readValue);
 
-   populateBook(newBookSubmission);
+//    populateBook(newBookSubmission);
 
     
 }
