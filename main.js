@@ -9,8 +9,8 @@ function book(name,author,pages,read){
     this.name = name;
     this.author = author;
     this.pages = pages;
-    this.read = read;
-    this.sayBook= function(){
+    this.read = read; 
+    this.sayName= function(){
         let announce = name + ' is a book by ' + author + ' with ' + pages + ' pages and I ' + read + ' read it.';
         console.log(announce);
     };
@@ -25,6 +25,8 @@ function addBookToLibrary(book){
     myLibrary.push(book);
     myLibrary.forEach(renderBookCard(book));
 };
+
+
 
 
 
@@ -74,11 +76,25 @@ function renderBookCard(book){
         //create a div to show if you've read the book
         let newBookReadStatusDiv = document.createElement('div');
         newBookDiv.appendChild(newBookReadStatusDiv);
-        newBookReadStatusDiv.setAttribute('class','book-pages');
+        newBookReadStatusDiv.setAttribute('class','book-read');
         newBookReadStatusDiv.textContent = `Have you read it? ${bookReadStatus}`;
 
+        let readButton = document.createElement('button');
+        newBookDiv.appendChild(readButton);
+        readButton.setAttribute('class','btn btn-secondary btn-read');
+        readButton.textContent = bookReadStatus;
+
+        let removeButton = document.createElement('button');
+        newBookDiv.appendChild(removeButton);
+        removeButton.setAttribute('class','btn btn-danger');
+        removeButton.textContent = "Remove";
+
+        removeButton.addEventListener('click',()=>{
+            bookRow.removeChild(newBookDiv);
+
+        })
+
         
-    
     
         console.log(bookName);
         console.log(bookAuthor);
@@ -98,6 +114,16 @@ bookModal.addEventListener('shown.bs.modal', function () {
 })
 
 // End Modal Javascript //
+
+// function changeBookRead(){
+//     let bookReadStatus = document.querySelector('.book-read').textContent;
+
+//     if (bookReadStatus = "Have you read it? No"){
+//         bookReadStatus = "Have you read it? Yes"
+//     } else {
+//         bookReadStatus = "Have you read it? No"
+//     }
+// };
 
 
 
@@ -120,6 +146,10 @@ function saveChanges(name,author,pages,read){
 }
 
 saveButton.addEventListener('click', saveChanges);
+
+
+
+
 
 
 
