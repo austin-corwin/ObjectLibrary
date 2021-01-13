@@ -53,7 +53,7 @@ function renderBookCard(book){
         let newBookDiv = document.createElement('div');
         let bookRow = document.querySelector('.book-row');
         bookRow.appendChild(newBookDiv);
-        newBookDiv.setAttribute('class','col-12 col-md-4 p-2 rounded border book');
+        newBookDiv.setAttribute('class','col-12 col-md-4 p-4 mb-3 mb-sm-0 rounded border book');
 
         //create a row div inside the book div
         let newBookDivRow = document.createElement('div');
