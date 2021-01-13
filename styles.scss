@@ -46,10 +46,12 @@ body {
             background-color: $light-blue;
             color: white;
             font-family: 'ProzaLibre' !important;   
-            transition: all .4s ease-in-out !important;         
+            transition: all .4s ease-in-out !important;   
+            border-color: $light-blue;      
             &:hover{
                 background-color: $dark-blue;
                 color: white;
+                border-color: $dark-blue;
                 
                 
 

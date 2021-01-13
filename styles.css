@@ -43,11 +43,13 @@ body .container .btn-primary {
   font-family: 'ProzaLibre' !important;
   -webkit-transition: all .4s ease-in-out !important;
   transition: all .4s ease-in-out !important;
+  border-color: #4393a3;
 }
 
 body .container .btn-primary:hover {
   background-color: #011627;
   color: white;
+  border-color: #011627;
 }
 
 body .container .grow {
