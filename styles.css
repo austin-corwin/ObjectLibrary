@@ -29,6 +29,7 @@ body .container .top .description {
 
 body .container .modal-content {
   border: 5px solid white;
+  border-radius: 10px;
 }
 
 body .container .modal-content .modal-header {

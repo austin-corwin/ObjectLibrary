@@ -36,6 +36,7 @@ body {
         }
         .modal-content{
             border: 5px solid white;
+            border-radius: 10px;
             .modal-header{
                 // background:linear-gradient(70deg, rgb(1, 22, 39) 75%, rgb(67, 147, 163) 20%, rgb(145, 190, 181) 100% );
                 background:linear-gradient(45deg, rgb(67, 147, 163) 75%, rgb(1, 22, 39) 20%,rgb(1, 22, 39) 90%, rgb(3, 41, 72) 100%, rgb(67, 147, 163) 100% );
