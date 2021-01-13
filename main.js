@@ -53,39 +53,51 @@ function renderBookCard(book){
         let newBookDiv = document.createElement('div');
         let bookRow = document.querySelector('.book-row');
         bookRow.appendChild(newBookDiv);
-        newBookDiv.setAttribute('class','col-12 col-md-4 p-2 rounded border book')
+        newBookDiv.setAttribute('class','col-12 col-md-4 p-2 rounded border book');
+
+        //create a row div inside the book div
+        let newBookDivRow = document.createElement('div');
+        newBookDiv.appendChild(newBookDivRow);
+        newBookDivRow.setAttribute('class','row');
+
+        //create a col div inside the row div
+        let newBookDivCol = document.createElement('div');
+        newBookDivRow.appendChild(newBookDivCol);
+        newBookDivCol.setAttribute('class','col m-5');
+
+
     
         // create a div for the book name
         let newBookNameDiv = document.createElement('div');
-        newBookDiv.appendChild(newBookNameDiv);
-        newBookNameDiv.setAttribute('class','book-name');
-        newBookNameDiv.textContent = `Name: ${bookName}`;
+        newBookDivCol.appendChild(newBookNameDiv);
+        newBookNameDiv.setAttribute('class','book-name my-1 border-bottom');
+        newBookNameDiv.textContent = `${bookName}`;
         
         //create a div for the book author
         let newBookAuthorDiv = document.createElement('div');
-        newBookDiv.appendChild(newBookAuthorDiv);
-        newBookAuthorDiv.setAttribute('class','book-author');
+        newBookDivCol.appendChild(newBookAuthorDiv);
+        newBookAuthorDiv.setAttribute('class','book-author my-1');
         newBookAuthorDiv.textContent = `Author: ${bookAuthor}`;
     
         //create a div for the book page number
         let newBookPagesDiv = document.createElement('div');
-        newBookDiv.appendChild(newBookPagesDiv);
-        newBookPagesDiv.setAttribute('class','book-pages');
+        newBookDivCol.appendChild(newBookPagesDiv);
+        newBookPagesDiv.setAttribute('class','book-pages my-1');
         newBookPagesDiv.textContent = `Pages: ${bookPages}`;
         
         //create a div to show if you've read the book
         let newBookReadStatusDiv = document.createElement('div');
-        newBookDiv.appendChild(newBookReadStatusDiv);
-        newBookReadStatusDiv.setAttribute('class','book-read');
+        newBookDivCol.appendChild(newBookReadStatusDiv);
+        newBookReadStatusDiv.setAttribute('class','book-read my-1');
         newBookReadStatusDiv.textContent = `Have you read it? ${bookReadStatus}`;
 
         let readButton = document.createElement('button');
-        newBookDiv.appendChild(readButton);
+        newBookDivCol.appendChild(readButton);
         readButton.setAttribute('class','btn btn-secondary btn-read');
         readButton.textContent = bookReadStatus;
 
         let removeButton = document.createElement('button');
-        newBookDiv.appendChild(removeButton);
+        newBookDivCol.appendChild(removeButton);
         removeButton.setAttribute('class','btn btn-danger');
         removeButton.textContent = "Remove";
 
