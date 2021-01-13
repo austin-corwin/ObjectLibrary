@@ -40,8 +40,9 @@ body .container .modal-content .modal-header {
 body .container .btn-primary {
   background-color: #4393a3;
   color: white;
-  border-color: #4393a3;
   font-family: 'ProzaLibre' !important;
+  -webkit-transition: all .4s ease-in-out !important;
+  transition: all .4s ease-in-out !important;
 }
 
 body .container .btn-primary:hover {
