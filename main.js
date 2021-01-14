@@ -1,11 +1,6 @@
+// console.log(localStorage.getItem('testObject'));
 
-
-const myLibrary = [];
-const saveButton = document.querySelector('.modal-save');
-
-
-
-function book(name,author,pages,read){
+function book(name = "New",author="New",pages="0",read="No"){
     this.name = name;
     this.author = author;
     this.pages = pages;
@@ -16,30 +11,50 @@ function book(name,author,pages,read){
     };
 };
 
-let wereNone = new book('And Then There Were None','Agatha Cristie',272,'Yes');
-let theHobbit = new book('The Hobbit','J.R Tolkien',304,'No');
-let the92 = new book('The 92','Agatha Cristie',272,'have');
-let huckleberryFinn = new book('HuckleBerry Finn','Agatha Cristie',272,'have');
 
+
+let myLibrary = [];
+let pulledLibrary = localStorage.getItem('testObject')
+// console.log(JSON.parse(pulledLibrary));
+myLibrary = JSON.parse(pulledLibrary) || [];
+
+for (i=0; i<myLibrary.length; i++){
+    renderBookCard(myLibrary[i]);
+}
+
+console.log(myLibrary);
+
+
+
+
+const saveButton = document.querySelector('.modal-save');
+
+
+
+
+// let theHobbit = new book('The Hobbit','J.R Tolkien',304,'No');
+// let the92 = new book('The 92','Agatha Cristie',272,'have');
+// let huckleberryFinn = new book('HuckleBerry Finn','Agatha Cristie',272,'have');
+
+  
 function addBookToLibrary(book){
     myLibrary.push(book);
-    myLibrary.forEach(renderBookCard(book));
+    renderBookCard(book);
+    saveLocal();
 };
 
+function removeBook(book){
+    let bookIndex = myLibrary.indexOf(book);
+    let realBookIndex = bookIndex + 1
+    console.log(bookIndex);
+    myLibrary.splice(bookIndex);
+}
 
 
 
 
-// addBookToLibrary(theHobbit);
-// addBookToLibrary(wereNone);
-// addBookToLibrary(the92);
-// addBookToLibrary(huckleberryFinn);
 
 
-// function populateBook(book){
-//     myLibrary.forEach(renderBookCard(book));
-
-// }
 
 function renderBookCard(book){
 
@@ -53,7 +68,11 @@ function renderBookCard(book){
         let newBookDiv = document.createElement('div');
         let bookRow = document.querySelector('.book-row');
         bookRow.appendChild(newBookDiv);
-        newBookDiv.setAttribute('class','col-12 col-md-4 p-4 mb-3 mb-sm-0 rounded border book');
+        newBookDiv.setAttribute('class','col-12 col-md-4 p-4 mb-3 mb-sm-0 rounded border book')
+
+        // for (i=0; i<myLibrary.length; i++){
+        // newBookDiv.setAttribute('data-index', i);
+        // }
 
         //create a row div inside the book div
         let newBookDivRow = document.createElement('div');
@@ -91,10 +110,10 @@ function renderBookCard(book){
         newBookReadStatusDiv.setAttribute('class','book-read my-1');
         newBookReadStatusDiv.textContent = `Have you read it? ${bookReadStatus}`;
 
-        let readButton = document.createElement('button');
-        newBookDivCol.appendChild(readButton);
-        readButton.setAttribute('class','btn btn-secondary btn-read');
-        readButton.textContent = bookReadStatus;
+        // let readButton = document.createElement('button');
+        // newBookDivCol.appendChild(readButton);
+        // readButton.setAttribute('class','btn btn-secondary btn-read');
+        // readButton.textContent = bookReadStatus;
 
         let removeButton = document.createElement('button');
         newBookDivCol.appendChild(removeButton);
@@ -103,16 +122,26 @@ function renderBookCard(book){
 
         removeButton.addEventListener('click',()=>{
             bookRow.removeChild(newBookDiv);
+            removeBook();
+            saveLocal();
+            console.log(myLibrary);
 
+            
         })
-
+        
         
     
         console.log(bookName);
         console.log(bookAuthor);
         console.log(bookPages);
         console.log(bookReadStatus);
+
+        // window.localStorage.setItem('testObject',myLibrary);
+
+        
 };
+
+
 
 
 
@@ -127,16 +156,6 @@ bookModal.addEventListener('shown.bs.modal', function () {
 
 // End Modal Javascript //
 
-// function changeBookRead(){
-//     let bookReadStatus = document.querySelector('.book-read').textContent;
-
-//     if (bookReadStatus = "Have you read it? No"){
-//         bookReadStatus = "Have you read it? Yes"
-//     } else {
-//         bookReadStatus = "Have you read it? No"
-//     }
-// };
-
 
 
 function saveChanges(name,author,pages,read){
@@ -145,19 +164,38 @@ function saveChanges(name,author,pages,read){
     let pagesValue = document.querySelector('.pages-input').value;
     let readValue = document.querySelector('.read-input').value;
     let newBookSubmission = new book(titleValue,authorValue,pagesValue,readValue);
-   addBookToLibrary(newBookSubmission);
-   console.log(myLibrary);
-   console.log(titleValue);
-   console.log(authorValue);
-   console.log(pagesValue);
-   console.log(readValue);
-
-//    populateBook(newBookSubmission);
+    addBookToLibrary(newBookSubmission);
+    // saveLocal();
+    // console.log(myLibrary);
+    // console.log(titleValue);
+    // console.log(authorValue);
+    // console.log(pagesValue);
+    // console.log(readValue);
 
     
 }
 
 saveButton.addEventListener('click', saveChanges);
+
+
+// function removeBook(){
+
+//     myLibrary.pop();
+    
+// }
+
+
+
+function saveLocal(){
+
+    localStorage.setItem('testObject',JSON.stringify(myLibrary));
+}
+
+// function clearLocal(){
+//     localStorage.clear();
+// }
+
+
 
 
 
