@@ -43,13 +43,15 @@ function addBookToLibrary(book){
     saveLocal();
 };
 
+
 function removeBook(book){
     let bookIndex = myLibrary.indexOf(book);
-    let realBookIndex = bookIndex + 1
+    // let bookIndexEnd = bookIndex + 1;
+    // let realBookIndex = bookIndex + 1;
     console.log(bookIndex);
-    myLibrary.splice(bookIndex);
+    // console.log(bookIndexEnd);
+    myLibrary.splice(bookIndex,bookIndex);
 }
-
 
 
 
@@ -122,7 +124,7 @@ function renderBookCard(book){
 
         removeButton.addEventListener('click',()=>{
             bookRow.removeChild(newBookDiv);
-            removeBook();
+            removeBook(book);
             saveLocal();
             console.log(myLibrary);
 
